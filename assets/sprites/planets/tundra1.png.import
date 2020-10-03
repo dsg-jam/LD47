@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lava.png-8a1d3baff9b9ad2989869ec386852278.stex"
+path="res://.import/tundra1.png-239ebbb66cc0d603874fa20b1778d6fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/planets/lava.png"
-dest_files=[ "res://.import/lava.png-8a1d3baff9b9ad2989869ec386852278.stex" ]
+source_file="res://assets/sprites/planets/tundra1.png"
+dest_files=[ "res://.import/tundra1.png-239ebbb66cc0d603874fa20b1778d6fe.stex" ]
 
 [params]
 

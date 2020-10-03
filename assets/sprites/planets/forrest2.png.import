@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lava.png-8a1d3baff9b9ad2989869ec386852278.stex"
+path="res://.import/forrest2.png-b5fab97b0a0bb78240ef616823a2b9e9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/planets/lava.png"
-dest_files=[ "res://.import/lava.png-8a1d3baff9b9ad2989869ec386852278.stex" ]
+source_file="res://assets/sprites/planets/forrest2.png"
+dest_files=[ "res://.import/forrest2.png-b5fab97b0a0bb78240ef616823a2b9e9.stex" ]
 
 [params]
 
