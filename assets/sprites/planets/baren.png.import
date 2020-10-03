@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceShooter2_spritesheet_2X.png-6759a72e7564cfc270af31df49581e90.stex"
+path="res://.import/baren.png-7e643c89c1ffdd65012940469954858f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/spaceShooter2_spritesheet_2X.png"
-dest_files=[ "res://.import/spaceShooter2_spritesheet_2X.png-6759a72e7564cfc270af31df49581e90.stex" ]
+source_file="res://assets/sprites/planets/baren.png"
+dest_files=[ "res://.import/baren.png-7e643c89c1ffdd65012940469954858f.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
