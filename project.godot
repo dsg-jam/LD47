@@ -29,10 +29,6 @@ window/dpi/allow_hidpi=true
 
 singletons=[  ]
 
-[physics]
-
-2d/default_gravity_vector=Vector2( 0, 0 )
-
 [rendering]
 
 environment/default_environment="res://default_env.tres"
