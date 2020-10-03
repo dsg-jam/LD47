@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/planets/terran1.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/rockets/player.png" type="Texture" id=3]
+[ext_resource path="res://scripts/NaiveOrbiter.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.0
@@ -26,19 +27,19 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource( 1 )
 
-[node name="Terran" type="StaticBody2D" parent="."]
-position = Vector2( -14.134, 11.4704 )
+[node name="Planet" type="KinematicBody2D" parent="."]
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Terran"]
+[node name="Sprite" type="Sprite" parent="Planet"]
 scale = Vector2( 0.331349, 0.331349 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Terran"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet"]
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.25, 0.25 )
+zoom = Vector2( 0.1, 0.1 )
