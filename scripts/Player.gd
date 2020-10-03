@@ -1,22 +1,12 @@
-extends KinematicBody2D
+extends RigidBody2D
 
-export (int) var speed = 100
+export(float) var speed: float = 1.0
 
-var velocity = Vector2()
+func get_input() -> Vector2:
+	var x := Input.get_action_strength("right") - Input.get_action_strength("left")
+	var y := Input.get_action_strength("down") - Input.get_action_strength("up")
+	return Vector2(x, y).normalized()
 
-func get_input():
-	velocity = Vector2()
-	if Input.is_action_pressed('right'):
-		velocity.x += 1
-	if Input.is_action_pressed('left'):
-		velocity.x -= 1
-	if Input.is_action_pressed('down'):
-		velocity.y += 1
-	if Input.is_action_pressed('up'):
-		velocity.y -= 1
-	velocity = velocity.normalized() * speed
-
-func _physics_process(delta):
-	get_input()
-	velocity = move_and_slide(velocity)
-	rotation = velocity.angle() + PI/2
+func _physics_process(_delta: float) -> void:
+	var input := get_input()
+	self.add_central_force(input * speed)
