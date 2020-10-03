@@ -1,47 +1,26 @@
-extends KinematicBody2D
+extends RigidBody2D
 
+const TARGET_GROUP: String = "enemy-target"
 
-var velocity = Vector2()
-export var speed = 10
-var targeting_player = false
-var player
+export(float) var speed: float = 10.0
 
-var rng = RandomNumberGenerator.new()
+var _target: RigidBody2D
+var _rng := RandomNumberGenerator.new()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-func _process(delta):
-	if targeting_player:
-		target_player(player)
+func _physics_process(_delta: float):
+	var my_pos := self.position
+	if self._target:
+		var pos_offset := _target.position - my_pos
+		self.add_central_force(pos_offset * speed)
 	else:
-		random_position()
-	velocity = velocity.normalized() * speed
-	rotation = velocity.angle() + PI/2
-	
+		var x := self._rng.randf_range(-1.0, 1.0)
+		var y := self._rng.randf_range(-1.0, 1.0)
+		self.add_central_force(Vector2(x, y))
 
-func target_player(body):
-	velocity.x = body.position.x - get_position().x
-	velocity.y = body.position.y - get_position().y
-	
+func _on_Area2D_body_entered(body: Node):
+	if body.is_in_group(TARGET_GROUP):
+		self._target = body
 
-
-func random_position():
-	velocity.x += rng.randf_range(-1.0, 1.0)
-	velocity.y += rng.randf_range(-1.0, 1.0)
-
-func _physics_process(delta):
-	velocity = move_and_slide(velocity)
-
-
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("Player"):
-		targeting_player = true;
-		player = body
-
-
-func _on_Area2D_body_exited(body):
-	if body.is_in_group("Player"):
-		targeting_player = false;
+func _on_Area2D_body_exited(body: Node):
+	if body.is_in_group(TARGET_GROUP):
+		self._target = null
