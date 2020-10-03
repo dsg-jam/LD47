@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lava.png-8a1d3baff9b9ad2989869ec386852278.stex"
+path="res://.import/ocean1.png-9b843614f2d5176a095bbc3b21b7b982.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/planets/lava.png"
-dest_files=[ "res://.import/lava.png-8a1d3baff9b9ad2989869ec386852278.stex" ]
+source_file="res://assets/sprites/planets/ocean1.png"
+dest_files=[ "res://.import/ocean1.png-9b843614f2d5176a095bbc3b21b7b982.stex" ]
 
 [params]
 

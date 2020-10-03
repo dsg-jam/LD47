@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lava.png-8a1d3baff9b9ad2989869ec386852278.stex"
+path="res://.import/gasgiant.png-cad1937ac232fe96be77a1a2e67f000d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/planets/lava.png"
-dest_files=[ "res://.import/lava.png-8a1d3baff9b9ad2989869ec386852278.stex" ]
+source_file="res://assets/sprites/planets/gasgiant.png"
+dest_files=[ "res://.import/gasgiant.png-cad1937ac232fe96be77a1a2e67f000d.stex" ]
 
 [params]
 
