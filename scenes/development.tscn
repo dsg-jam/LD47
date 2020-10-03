@@ -1,22 +1,42 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/planets/terran1.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/ships.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/rockets/player.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 3 )
-region = Rect2( 1148, 0, 235, 628 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 1.0
+height = 3.5
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 8.00051
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Player"]
-texture = SubResource( 1 )
+scale = Vector2( 0.008, 0.008 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 2 )
 
 [node name="Terran" type="StaticBody2D" parent="."]
+position = Vector2( -14.134, 11.4704 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Terran"]
+scale = Vector2( 0.331349, 0.331349 )
 texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terran"]
+shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
