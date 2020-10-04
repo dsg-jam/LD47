@@ -4,9 +4,10 @@
 [ext_resource path="res://scripts/Planet.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 2.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 250.0
+radius = 50.0
 
 [node name="Planet" type="KinematicBody2D"]
 position = Vector2( 95.7107, 0 )
@@ -24,10 +25,13 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Gravity" type="Area2D" parent="."]
+visible = false
 space_override = 1
 gravity_point = true
 gravity_distance_scale = 0.05
 gravity_vec = Vector2( 0, 0 )
+gravity = 10.0
+angular_damp = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gravity"]
 shape = SubResource( 2 )
