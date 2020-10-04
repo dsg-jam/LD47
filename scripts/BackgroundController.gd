@@ -31,7 +31,7 @@ func _on_Timer_timeout():
 	for background_tile in background_tiles:
 		background_tile.animate()
 
-func _process(delta):
+func _process(_delta: float):
 	var current_camera_position = camera_position.get_camera_position()
 	if abs(current_camera_position.x - position.x) > background_size:
 		position.x = ceil(current_camera_position.x / background_size) * background_size

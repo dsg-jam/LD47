@@ -26,9 +26,9 @@ func _update_planet() -> void:
 	self._collision_shape.shape = _new_shape(self.radius)
 	self._gravity_collision_shape.shape = _new_shape(25.0 * self.radius)
 
-func _new_shape(radius: float) -> CircleShape2D:
+func _new_shape(rad: float) -> CircleShape2D:
 	var shape := CircleShape2D.new()
-	shape.radius = radius
+	shape.radius = rad
 	return shape
 
 func _set_texture(value: Texture) -> void:
