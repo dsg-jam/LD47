@@ -22,9 +22,14 @@ func _update_planet() -> void:
 	self._sprite.texture = self.texture
 	var sprite_size := 2.0 * self.radius * scale
 	self._sprite.scale = Vector2(sprite_size, sprite_size)
-	
-	self._collision_shape.shape.radius = self.radius
-	self._gravity_collision_shape.shape.radius = 25.0 * self.radius
+
+	self._collision_shape.shape = _new_shape(self.radius)
+	self._gravity_collision_shape.shape = _new_shape(25.0 * self.radius)
+
+func _new_shape(radius: float) -> CircleShape2D:
+	var shape := CircleShape2D.new()
+	shape.radius = radius
+	return shape
 
 func _set_texture(value: Texture) -> void:
 	texture = value
