@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/Planet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/rockets/player.png" type="Texture" id=3]
 [ext_resource path="res://scripts/BackgroundController.gd" type="Script" id=4]
+[ext_resource path="res://prefabs/Background.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefabs/Enemy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -14,9 +15,12 @@ height = 3.5
 
 [node name="BackgroundController" type="Node2D" parent="."]
 script = ExtResource( 4 )
+background_tile_scene = ExtResource( 5 )
+fps = 7.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.1, 0.1 )
 __meta__ = {
 "_edit_lock_": true
 }
