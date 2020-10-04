@@ -65,17 +65,31 @@ region_rect = Rect2( 0, 0, 0.5, 20 )
 position = Vector2( 147.474, 0 )
 periapsis = 100.0
 apoapsis = 150.0
+orbit_rotation = 0.0
+angle_offset = 0.0
 orbital_period = 60.0
 static_target = NodePath("../Sun")
+run_in_editor = false
+editor_path_active = true
+editor_path_points = 50
+editor_path_color = Color( 0.8, 1, 1, 0.5 )
+editor_path_width = 2.0
 texture = ExtResource( 8 )
+radius = 10.0
 
 [node name="Moon" parent="." instance=ExtResource( 2 )]
 position = Vector2( 146.113, 46.6029 )
 periapsis = 20.0
 apoapsis = 50.0
 orbit_rotation = 1.6
+angle_offset = 0.0
 orbital_period = 20.0
 static_target = NodePath("../Planet")
+run_in_editor = false
+editor_path_active = true
+editor_path_points = 50
+editor_path_color = Color( 0.8, 1, 1, 0.5 )
+editor_path_width = 2.0
 texture = ExtResource( 7 )
 radius = 2.0
 
