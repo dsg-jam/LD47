@@ -35,7 +35,7 @@ fps = 2.0
 [node name="Player" type="RigidBody2D" parent="." groups=[
 "enemy-target",
 ]]
-position = Vector2( 75.944, -24.3649 )
+position = Vector2( 190.949, -50.1492 )
 mass = 10.0
 script = ExtResource( 1 )
 __meta__ = {
@@ -49,47 +49,31 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-zoom = Vector2( 0.1, 0.1 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Acceleration" type="Sprite" parent="Player"]
 texture = SubResource( 3 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 0.5, 20 )
+region_rect = Rect2( 0, 0, 0.5, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2( 0.1, 0.1 )
+smoothing_enabled = true
 
 [node name="Planet" parent="." instance=ExtResource( 2 )]
 position = Vector2( 147.474, 0 )
 periapsis = 100.0
 apoapsis = 150.0
-orbit_rotation = 0.0
-angle_offset = 0.0
 orbital_period = 60.0
 static_target = NodePath("../Sun")
-run_in_editor = false
-editor_path_active = true
-editor_path_points = 50
-editor_path_color = Color( 0.8, 1, 1, 0.5 )
-editor_path_width = 2.0
 texture = ExtResource( 8 )
-radius = 10.0
 
 [node name="Moon" parent="." instance=ExtResource( 2 )]
 position = Vector2( 146.113, 46.6029 )
 periapsis = 20.0
 apoapsis = 50.0
 orbit_rotation = 1.6
-angle_offset = 0.0
 orbital_period = 20.0
 static_target = NodePath("../Planet")
-run_in_editor = false
-editor_path_active = true
-editor_path_points = 50
-editor_path_color = Color( 0.8, 1, 1, 0.5 )
-editor_path_width = 2.0
 texture = ExtResource( 7 )
 radius = 2.0
 
