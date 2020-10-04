@@ -20,10 +20,11 @@ var target: Node2D
 var _ellipse: Ellipse
 
 func _ready() -> void:
+	self._update_ellipse()
+	
 	if self.static_target:
 		self.target = get_node(self.static_target)
 	
-	self._update_ellipse()
 	self.position = calculate_position()
 
 func _physics_process(_delta: float) -> void:

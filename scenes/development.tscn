@@ -48,7 +48,6 @@ texture = ExtResource( 3 )
 shape = SubResource( 2 )
 
 [node name="Planet" parent="." instance=ExtResource( 2 )]
-position = Vector2( 95.7107, 0 )
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 position = Vector2( -15.4339, -3.21039 )
