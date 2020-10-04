@@ -1,27 +1,38 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/Planet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/rockets/player.png" type="Texture" id=3]
-[ext_resource path="res://scripts/BackgroundController.gd" type="Script" id=4]
+[ext_resource path="res://prefabs/Sun.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prefabs/Background.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefabs/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sprites/planets/barren3.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/planets/terran1.png" type="Texture" id=8]
+[ext_resource path="res://scripts/BackgroundController.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.0
 height = 3.5
 
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
 [node name="Node2D" type="Node2D"]
 
 [node name="BackgroundController" type="Node2D" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 background_tile_scene = ExtResource( 5 )
 fps = 2.0
 
 [node name="Player" type="RigidBody2D" parent="." groups=[
 "enemy-target",
 ]]
-position = Vector2( 50, 0 )
+position = Vector2( 75.944, -24.3649 )
+mass = 10.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -36,12 +47,34 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+zoom = Vector2( 0.1, 0.1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Acceleration" type="Sprite" parent="Player"]
+texture = SubResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 0.5, 20 )
+
 [node name="Planet" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0.570984, -1.66728 )
+position = Vector2( 98.666, 0 )
+periapsis = 70.0
+orbital_period = 60.0
+static_target = NodePath("../Sun")
+texture = ExtResource( 8 )
+
+[node name="Moon" parent="." instance=ExtResource( 2 )]
+position = Vector2( 97.3046, 46.6029 )
+periapsis = 20.0
+apoapsis = 50.0
+orbit_rotation = 1.6
+orbital_period = 20.0
+static_target = NodePath("../Planet")
+texture = ExtResource( 7 )
+radius = 2.0
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
-position = Vector2( -15.4339, -3.21039 )
+position = Vector2( 103.784, -25.2107 )
+
+[node name="Sun" parent="." instance=ExtResource( 4 )]
