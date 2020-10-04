@@ -30,7 +30,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if Engine.editor_hint:
 		if not self.run_in_editor:
-			self.position = self.calculate_position_at_time(0.0)
+			self.position = self.position_at_time(0.0)
 			return
 
 	var next_pos := calculate_position()
@@ -45,26 +45,25 @@ func _draw() -> void:
 		return
 
 	var delta_angle := TAU / self.editor_path_points
-	var offset := self._get_offset()
 	for i in range(self.editor_path_points):
 		var start_angle := i * delta_angle
-		var start := self._ellipse.get_position(start_angle, offset)
-		var end := self._ellipse.get_position(start_angle + delta_angle, offset)
+		var start := self.position_at_angle(start_angle)
+		var end := self.position_at_angle(start_angle + delta_angle)
 		self.draw_line(start - self.position, end - self.position, self.editor_path_color, self.editor_path_width)
 
-func _get_offset() -> Vector2:
-	var offset := Vector2((apoapsis - periapsis) / 2.0, 0.0)
+func position_at_angle(angle: float) -> Vector2:
+	var global_offset := Vector2.ZERO
 	if self.target:
-		offset += self.target.position
-	return offset
+		global_offset = self.target.position
+	var pos := self._ellipse.get_position(angle, Vector2((apoapsis - periapsis) / 2.0, 0.0))
+	return pos + global_offset
 
-func calculate_position_at_time(t: float) -> Vector2:
+func position_at_time(t: float) -> Vector2:
 	var angle := self.angle_offset + t * (TAU / orbital_period)
-	var offset := self._get_offset()
-	return self._ellipse.get_position(angle, offset)
+	return self.position_at_angle(angle)
 
 func calculate_position() -> Vector2:
-	return self.calculate_position_at_time(OS.get_ticks_msec() / 1000.0)
+	return self.position_at_time(OS.get_ticks_msec() / 1000.0)
 
 func _update_ellipse() -> void:
 	var major := (self.periapsis + self.apoapsis) / 2.0

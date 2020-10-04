@@ -7,6 +7,6 @@ func _init(minor: float, major: float, rot: float = 0.0) -> void:
 	self.semi_major = major
 	self.rotation = rot
 
-func get_position(angle: float, offset: Vector2) -> Vector2:
+func get_position(angle: float, center_offset: Vector2) -> Vector2:
 	var pos := Vector2(self.semi_major * cos(angle), self.semi_minor * sin(angle))
-	return (pos + offset).rotated(self.rotation)
+	return (pos + center_offset).rotated(self.rotation)
