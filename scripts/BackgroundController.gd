@@ -19,10 +19,10 @@ func _ready():
 	camera_position = get_node("../Player/Camera2D")
 	camera_init = camera_position.get_camera_position()
 	background_size =  background_tile_scene.instance().texture.get_size().y
-	for i in range(ceil((get_viewport().size.x * camera_position.zoom.x / float(background_size)) * 2)):
-		for j in range(ceil((get_viewport().size.y * camera_position.zoom.y / float(background_size)) * 2)):
+	for i in range(ceil((get_viewport().size.x * camera_position.zoom.x / float(background_size)) * 4)):
+		for j in range(ceil((get_viewport().size.y * camera_position.zoom.y / float(background_size)) * 4)):
 			var background_tile = background_tile_scene.instance();
-			background_tile.init((i * background_size) + (camera_position.get_camera_position().x - get_viewport().size.x / 2.0) * camera_position.zoom.x * 2, (j * background_size) + (camera_position.get_camera_position().y - get_viewport().size.y / 2.0) * camera_position.zoom.y * 2)
+			background_tile.init((i * background_size) + (camera_position.get_camera_position().x - get_viewport().size.x / 2.0) * camera_position.zoom.x * 4, (j * background_size) + (camera_position.get_camera_position().y - get_viewport().size.y / 2.0) * camera_position.zoom.y * 4)
 			add_child(background_tile)
 			background_tiles.append(background_tile)
 
