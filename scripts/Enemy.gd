@@ -9,15 +9,11 @@ var _target: RigidBody2D
 var orbiting_planet
 var _rng := RandomNumberGenerator.new()
 
-var is_orbiting = false
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	var my_pos := self.position
 	if self.orbiting_planet:
-		if is_orbiting:
-			return
 		var gravity = state.total_gravity
-		print(gravity)
 		self.set_linear_velocity(((mass * sqrt((gravity.length() * orbiting_planet.position.distance_to(position)))) * gravity.rotated(TAU/4).normalized()))
 #	elif self._target:
 #		var pos_offset := _target.position - my_pos
