@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Planet.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="OccluderPolygon2D" id=2]
+cull_mode = 1
+polygon = PoolVector2Array( 10, 0, 8.09017, 5.87785, 3.09017, 9.51056, -3.09017, 9.51056, -8.09017, 5.87785, -10, 1.22465e-15, -8.09017, -5.87785, -3.09017, -9.51056, 3.09017, -9.51056, 8.09017, -5.87785 )
+
+[sub_resource type="CircleShape2D" id=3]
 radius = 250.0
 
 [node name="Planet" type="KinematicBody2D" groups=[
@@ -22,6 +26,9 @@ scale = Vector2( 20, 20 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )
+
 [node name="Gravity" type="Area2D" parent="."]
 visible = false
 space_override = 1
@@ -33,4 +40,4 @@ linear_damp = 0.0
 angular_damp = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gravity"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
