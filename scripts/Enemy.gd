@@ -1,4 +1,3 @@
-tool
 extends RigidBody2D
 
 const TARGET_GROUP: String = "enemy-target"
