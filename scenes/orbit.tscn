@@ -6,14 +6,17 @@
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 77.669, 0 )
+
 [node name="Planet" parent="." instance=ExtResource( 1 )]
+position = Vector2( 50, 0 )
+periapsis = 50.0
+apoapsis = 50.0
 orbital_period = 60.0
 texture = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="Planet"]
-position = Vector2( -95.7107, 0 )
+position = Vector2( -50, 0 )
 current = true
 zoom = Vector2( 0.25, 0.25 )
-
-[node name="Enemy" parent="Planet" instance=ExtResource( 2 )]
-position = Vector2( 12.3362, 15.1884 )
