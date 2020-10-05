@@ -8,7 +8,7 @@ export var apoapsis: float = 100.0 setget _set_apoapsis
 export(float, -4, 4) var orbit_rotation: float = 0.0 setget _set_orbit_rotation
 export(float, -4, 4) var angle_offset: float = 0.0
 export var orbital_period: float = 10.0
-export var static_target: NodePath
+export var static_target: NodePath setget _set_static_target
 export var run_in_editor: bool = false
 
 export var editor_path_active: bool = true
@@ -21,10 +21,6 @@ var _ellipse: Ellipse
 
 func _ready() -> void:
 	self._update_ellipse()
-	
-	if self.static_target:
-		self.target = get_node(self.static_target)
-	
 	self.position = calculate_position()
 
 func _physics_process(_delta: float) -> void:
@@ -55,7 +51,8 @@ func position_at_angle(angle: float) -> Vector2:
 	var global_offset := Vector2.ZERO
 	if self.target:
 		global_offset = self.target.position
-	var pos := self._ellipse.get_position(angle, Vector2((apoapsis - periapsis) / 2.0, 0.0))
+	var center_offset := (apoapsis - periapsis) / 2.0
+	var pos := self._ellipse.get_position(angle, center_offset * Vector2.RIGHT)
 	return pos + global_offset
 
 func position_at_time(t: float) -> Vector2:
@@ -69,7 +66,10 @@ func _update_ellipse() -> void:
 	var major := (self.periapsis + self.apoapsis) / 2.0
 	var eccentricity := 1.0 - (2.0 / ((self.apoapsis / self.periapsis) + 1.0))
 	var minor := major * sqrt(1 - pow(eccentricity, 2.0))
-	self._ellipse = Ellipse.new(major, minor, self.orbit_rotation)
+	self._ellipse = Ellipse.new(minor, major, self.orbit_rotation)
+	
+	if self.static_target:
+		self.target = get_node_or_null(self.static_target)
 
 func _set_periapsis(value: float) -> void:
 	periapsis = min(value, self.apoapsis)
@@ -81,4 +81,8 @@ func _set_apoapsis(value: float) -> void:
 
 func _set_orbit_rotation(value: float) -> void:
 	orbit_rotation = value
+	self._update_ellipse()
+
+func _set_static_target(value: NodePath) -> void:
+	static_target = value
 	self._update_ellipse()
