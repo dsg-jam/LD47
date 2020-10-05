@@ -7,7 +7,9 @@
 [sub_resource type="CircleShape2D" id=2]
 radius = 250.0
 
-[node name="Planet" type="KinematicBody2D"]
+[node name="Planet" type="KinematicBody2D" groups=[
+"planet",
+]]
 position = Vector2( 95.7107, 0 )
 script = ExtResource( 2 )
 __meta__ = {
