@@ -72,11 +72,11 @@ func _update_ellipse() -> void:
 		self.target = get_node_or_null(self.static_target)
 
 func _set_periapsis(value: float) -> void:
-	periapsis = min(value, self.apoapsis)
+	periapsis = value
 	self._update_ellipse()
 	
 func _set_apoapsis(value: float) -> void:
-	apoapsis = max(value, self.periapsis)
+	apoapsis = value
 	self._update_ellipse()
 
 func _set_orbit_rotation(value: float) -> void:
