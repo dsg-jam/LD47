@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-2b16efcf6574bbab11e1208e20c37002.stex"
+path="res://.import/crossair_blackOutline.png-bbbef80c147361625727a2e10656b3b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/light.png"
-dest_files=[ "res://.import/light.png-2b16efcf6574bbab11e1208e20c37002.stex" ]
+source_file="res://assets/sprites/ui/crossair_blackOutline.png"
+dest_files=[ "res://.import/crossair_blackOutline.png-bbbef80c147361625727a2e10656b3b6.stex" ]
 
 [params]
 
