@@ -23,6 +23,9 @@ gradient = SubResource( 2 )
 
 [node name="Node2D" type="Node2D"]
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.27451, 0.27451, 0.27451, 1 )
+
 [node name="BackgroundController" type="Node2D" parent="."]
 script = ExtResource( 9 )
 __meta__ = {
