@@ -40,40 +40,12 @@ fps = 2.0
 position = Vector2( 220, 2 )
 sun_path = NodePath("../Sun")
 
-[node name="Planet" parent="." instance=ExtResource( 2 )]
-position = Vector2( 450, 0 )
-periapsis = 250.0
-apoapsis = 450.0
-orbital_period = 150.0
-static_target = NodePath("../Sun")
-texture = ExtResource( 8 )
-radius = 12.0
-
-[node name="Moon" parent="." instance=ExtResource( 2 )]
-position = Vector2( 448.54, 49.9787 )
-periapsis = 20.0
-apoapsis = 50.0
-orbit_rotation = 1.6
-orbital_period = 20.0
-static_target = NodePath("../Planet")
-texture = ExtResource( 7 )
-radius = 2.0
-
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 position = Vector2( 103.784, -25.2107 )
 
-[node name="Planet2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 360.891, -472.349 )
-periapsis = 475.0
-apoapsis = 800.0
-orbit_rotation = -2.5
-angle_offset = 1.839
-orbital_period = 250.0
-static_target = NodePath("../Sun")
-texture = ExtResource( 3 )
-radius = 15.0
+[node name="Planets" type="Node2D" parent="."]
 
-[node name="Planet3" parent="." instance=ExtResource( 2 )]
+[node name="Desert" parent="Planets" instance=ExtResource( 2 )]
 position = Vector2( 302.253, -415.739 )
 periapsis = 450.0
 apoapsis = 550.0
@@ -84,53 +56,17 @@ static_target = NodePath("../Sun")
 texture = ExtResource( 10 )
 radius = 16.0
 
-[node name="Planet4" parent="." instance=ExtResource( 2 )]
-position = Vector2( -346.497, 49.392 )
-periapsis = 150.0
-apoapsis = 350.0
-orbit_rotation = 3.0
-orbital_period = 245.0
-static_target = NodePath("../Sun")
-texture = ExtResource( 11 )
-radius = 15.0
+[node name="Lava" parent="Planets" instance=ExtResource( 2 )]
+position = Vector2( 621.353, 374.043 )
+periapsis = 550.0
+apoapsis = 975.0
+orbit_rotation = -0.92
+angle_offset = 1.747
+orbital_period = 450.0
+texture = ExtResource( 17 )
+radius = 25.0
 
-[node name="Planet" parent="Planet4" instance=ExtResource( 2 )]
-position = Vector2( 50, 0 )
-periapsis = 30.0
-apoapsis = 50.0
-orbital_period = 15.0
-texture = ExtResource( 14 )
-radius = 2.0
-
-[node name="Planet2" parent="Planet4" instance=ExtResource( 2 )]
-position = Vector2( 45, 0 )
-periapsis = 20.0
-apoapsis = 45.0
-texture = ExtResource( 16 )
-radius = 1.0
-
-[node name="Planet5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 373.79, -178.706 )
-periapsis = 200.0
-apoapsis = 2500.0
-orbit_rotation = 1.0
-angle_offset = 3.762
-orbital_period = 650.0
-texture = ExtResource( 12 )
-radius = 8.0
-
-[node name="Planet6" parent="." instance=ExtResource( 2 )]
-position = Vector2( 887.552, -281.029 )
-periapsis = 350.0
-apoapsis = 1200.0
-orbit_rotation = -1.011
-angle_offset = 1.195
-orbital_period = 275.0
-static_target = NodePath("../Sun")
-texture = ExtResource( 13 )
-radius = 15.0
-
-[node name="Planet7" parent="." instance=ExtResource( 2 )]
+[node name="Ice" parent="Planets" instance=ExtResource( 2 )]
 position = Vector2( -206.963, 415.617 )
 periapsis = 375.0
 apoapsis = 525.0
@@ -141,12 +77,77 @@ static_target = NodePath("../Sun")
 texture = ExtResource( 15 )
 radius = 8.0
 
-[node name="Planet8" parent="." instance=ExtResource( 2 )]
-position = Vector2( 621.353, 374.043 )
-periapsis = 550.0
-apoapsis = 975.0
-orbit_rotation = -0.92
-angle_offset = 1.747
-orbital_period = 450.0
-texture = ExtResource( 17 )
-radius = 25.0
+[node name="Asteroid" parent="Planets" instance=ExtResource( 2 )]
+position = Vector2( 887.552, -281.029 )
+periapsis = 350.0
+apoapsis = 1200.0
+orbit_rotation = -1.011
+angle_offset = 1.195
+orbital_period = 275.0
+static_target = NodePath("../Sun")
+texture = ExtResource( 13 )
+radius = 15.0
+
+[node name="Asteroid2" parent="Planets" instance=ExtResource( 2 )]
+position = Vector2( 373.79, -178.706 )
+periapsis = 200.0
+apoapsis = 2500.0
+orbit_rotation = 1.0
+angle_offset = 3.762
+orbital_period = 650.0
+texture = ExtResource( 12 )
+radius = 8.0
+
+[node name="Gasgiant" parent="Planets" instance=ExtResource( 2 )]
+position = Vector2( -346.497, 49.392 )
+periapsis = 150.0
+apoapsis = 350.0
+orbit_rotation = 3.0
+orbital_period = 245.0
+static_target = NodePath("../Sun")
+texture = ExtResource( 11 )
+radius = 15.0
+
+[node name="Planet" parent="Planets/Gasgiant" instance=ExtResource( 2 )]
+position = Vector2( 50, 0 )
+periapsis = 30.0
+apoapsis = 50.0
+orbital_period = 15.0
+texture = ExtResource( 14 )
+radius = 2.0
+
+[node name="Planet2" parent="Planets/Gasgiant" instance=ExtResource( 2 )]
+position = Vector2( 45, 0 )
+periapsis = 20.0
+apoapsis = 45.0
+texture = ExtResource( 16 )
+radius = 1.0
+
+[node name="Ocean" parent="Planets" instance=ExtResource( 2 )]
+position = Vector2( 360.891, -472.349 )
+periapsis = 475.0
+apoapsis = 800.0
+orbit_rotation = -2.5
+angle_offset = 1.839
+orbital_period = 250.0
+static_target = NodePath("../Sun")
+texture = ExtResource( 3 )
+radius = 15.0
+
+[node name="Terran" parent="Planets" instance=ExtResource( 2 )]
+position = Vector2( 450, 0 )
+periapsis = 250.0
+apoapsis = 450.0
+orbital_period = 150.0
+static_target = NodePath("../Sun")
+texture = ExtResource( 8 )
+radius = 12.0
+
+[node name="Moon" parent="Planets/Terran" instance=ExtResource( 2 )]
+position = Vector2( -1.45998, 49.9787 )
+periapsis = 20.0
+apoapsis = 50.0
+orbit_rotation = 1.6
+orbital_period = 20.0
+texture = ExtResource( 7 )
+radius = 2.0
