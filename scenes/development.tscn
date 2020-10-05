@@ -35,7 +35,7 @@ fps = 2.0
 [node name="Player" type="RigidBody2D" parent="." groups=[
 "enemy-target",
 ]]
-position = Vector2( 190.949, -50.1492 )
+position = Vector2( 158.689, 4.94207 )
 mass = 10.0
 script = ExtResource( 1 )
 __meta__ = {
@@ -78,6 +78,6 @@ texture = ExtResource( 7 )
 radius = 2.0
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
-position = Vector2( 103.784, -25.2107 )
+position = Vector2( 160.209, 22.636 )
 
 [node name="Sun" parent="." instance=ExtResource( 4 )]

@@ -8,7 +8,9 @@ radius = 40.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 1000.0
 
-[node name="Sun" type="StaticBody2D"]
+[node name="Sun" type="StaticBody2D" groups=[
+"planet",
+]]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
