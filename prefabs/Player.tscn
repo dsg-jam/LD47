@@ -19,9 +19,6 @@ gradient = SubResource( 2 )
 ]]
 mass = 10.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.008, 0.008 )

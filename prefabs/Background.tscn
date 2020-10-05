@@ -9,6 +9,3 @@ texture = ExtResource( 2 )
 centered = false
 hframes = 4
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}

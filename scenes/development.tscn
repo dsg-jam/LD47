@@ -13,15 +13,19 @@
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="BackgroundController" type="Node2D" parent="."]
 script = ExtResource( 9 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_lock_": true
 }
 background_tile_scene = ExtResource( 5 )
 fps = 2.0
+
+[node name="Sun" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 220, 2 )
@@ -46,5 +50,3 @@ radius = 2.0
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 position = Vector2( 103.784, -25.2107 )
-
-[node name="Sun" parent="." instance=ExtResource( 4 )]
