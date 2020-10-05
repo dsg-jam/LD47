@@ -21,8 +21,8 @@ onready var _interaction_sprite: Sprite = $Interaction/Sprite
 func _ready() -> void:
 	self._update_planet()
 
-func calculate_gravity_strength_at(radius: float) -> float:
-	return self._gravity.gravity / pow(radius * self._gravity.gravity_distance_scale + 1, 2)
+func calculate_gravity_strength_at(rad: float) -> float:
+	return self._gravity.gravity / pow(rad * self._gravity.gravity_distance_scale + 1, 2)
 
 func _new_occluder(rad: float) -> OccluderPolygon2D:
 	var occluder := OccluderPolygon2D.new()

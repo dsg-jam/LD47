@@ -31,13 +31,10 @@ func _physics_process(_delta: float) -> void:
 			return
 
 	var next_pos := calculate_position()
-	self.linear_velocity = next_pos - self.position
-	var collision := self.move_and_collide(self.linear_velocity)
-	if collision:
-		# if we, for whatever reason, collided with something else
-		# we set the veloocity to the distance we ended up travelling before the
-		# collision.
-		self.linear_velocity = collision.travel
+	var vel := next_pos - self.position
+	var _collision := self.move_and_collide(vel)
+	var p := self._ellipse.get_point(self.angle_offset + (OS.get_ticks_msec() / 1000.0) * (TAU / orbital_period))
+	self.linear_velocity = vel.normalized() * p.length() * (TAU / orbital_period)
 
 func _process(_delta: float) -> void:
 	if Engine.editor_hint:
