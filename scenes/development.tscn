@@ -38,6 +38,7 @@ fps = 2.0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 220, 2 )
+sun_path = NodePath("../Sun")
 
 [node name="Planet" parent="." instance=ExtResource( 2 )]
 position = Vector2( 450, 0 )
