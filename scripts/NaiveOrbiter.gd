@@ -17,6 +17,7 @@ export var editor_path_color := Color(0.8, 1.0, 1.0, 0.5)
 export(float, 0, 10) var editor_path_width: float = 2.0
 
 var target: Node2D
+var linear_velocity: Vector2
 var _ellipse: Ellipse
 
 func _ready() -> void:
@@ -30,7 +31,13 @@ func _physics_process(_delta: float) -> void:
 			return
 
 	var next_pos := calculate_position()
-	var _vel := self.move_and_collide(next_pos - self.position)
+	self.linear_velocity = next_pos - self.position
+	var collision := self.move_and_collide(self.linear_velocity)
+	if collision:
+		# if we, for whatever reason, collided with something else
+		# we set the veloocity to the distance we ended up travelling before the
+		# collision.
+		self.linear_velocity = collision.travel
 
 func _process(_delta: float) -> void:
 	if Engine.editor_hint:
