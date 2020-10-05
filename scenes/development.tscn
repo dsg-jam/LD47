@@ -1,25 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefabs/Planet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sprites/rockets/player.png" type="Texture" id=3]
 [ext_resource path="res://prefabs/Sun.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prefabs/Background.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefabs/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/sprites/planets/barren3.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/planets/terran1.png" type="Texture" id=8]
 [ext_resource path="res://scripts/BackgroundController.gd" type="Script" id=9]
-
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 1.0
-height = 3.5
-
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -35,32 +23,8 @@ __meta__ = {
 background_tile_scene = ExtResource( 5 )
 fps = 2.0
 
-[node name="Player" type="RigidBody2D" parent="." groups=[
-"enemy-target",
-]]
-position = Vector2( 190.949, -50.1492 )
-mass = 10.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Player"]
-scale = Vector2( 0.008, 0.008 )
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 1 )
-
-[node name="Acceleration" type="Sprite" parent="Player"]
-texture = SubResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 0.5, 0 )
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-zoom = Vector2( 0.1, 0.1 )
-smoothing_enabled = true
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 220, 2 )
 
 [node name="Planet" parent="." instance=ExtResource( 2 )]
 position = Vector2( 147.474, 0 )
