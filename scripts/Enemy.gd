@@ -18,8 +18,7 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 			return
 		var gravity = state.total_gravity
 		print(gravity)
-		self.apply_central_impulse((mass * sqrt((gravity.length() * orbiting_planet.position.distance_to(position)))) * gravity.rotated(TAU/4).normalized())
-		is_orbiting = true
+		self.set_linear_velocity(((mass * sqrt((gravity.length() * orbiting_planet.position.distance_to(position)))) * gravity.rotated(TAU/4).normalized()))
 #	elif self._target:
 #		var pos_offset := _target.position - my_pos
 #		self.applied_force = pos_offset.normalized() * accel
