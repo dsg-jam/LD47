@@ -8,7 +8,7 @@ export var sun_path: NodePath
 
 onready var acceleration_sprite: Sprite = $AccelerationDisplay
 onready var gravity_sprite: Sprite = $GravityDisplay
-onready var planets = get_tree().get_nodes_in_group("planet")
+onready var planets: Array = get_tree().get_nodes_in_group("planet")
 
 func _ready():
 	planets.erase(get_node(sun_path))
@@ -24,8 +24,10 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 func _process(_delta: float) -> void:
 	var strongest_gravity := 0.0
 	var target_planet: Planet
-	for planet in planets:
-		var planet_gravity = abs(planet.calculate_gravity_strength_at(planet.position.distance_to(position)))
+	for _planet in self.planets:
+		var planet: Planet = _planet
+		var distance := planet.position.distance_to(self.position)
+		var planet_gravity := abs(planet.calculate_gravity_strength_at(distance))
 		if planet_gravity > strongest_gravity:
 			target_planet = planet
 			strongest_gravity = planet_gravity

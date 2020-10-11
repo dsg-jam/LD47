@@ -22,15 +22,17 @@ var _ellipse: Ellipse
 
 func _ready() -> void:
 	self._update_ellipse()
-	self.position = calculate_position()
+	if Engine.editor_hint:
+		self.position = position_at_time(0.0)
+	else:
+		self.position = calculate_position()
 
 func _physics_process(_delta: float) -> void:
 	if Engine.editor_hint:
-		if self.run_in_editor:
-			self.update()
-		else:
-			self.position = self.position_at_time(0.0)
+		if not self.run_in_editor:
 			return
+
+		self.update()
 
 	var next_pos := calculate_position()
 	var vel := next_pos - self.position
