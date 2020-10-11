@@ -29,6 +29,11 @@ window/dpi/allow_hidpi=true
 
 singletons=[  ]
 
+[gui]
+
+theme/custom="res://ui/theme.tres"
+theme/custom_font="res://ui/kenvector_future-16.tres"
+
 [input]
 
 up={
