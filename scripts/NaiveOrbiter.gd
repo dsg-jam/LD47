@@ -26,7 +26,9 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Engine.editor_hint:
-		if not self.run_in_editor:
+		if self.run_in_editor:
+			self.update()
+		else:
 			self.position = self.position_at_time(0.0)
 			return
 
@@ -35,10 +37,6 @@ func _physics_process(_delta: float) -> void:
 	var _collision := self.move_and_collide(vel)
 	var p := self._ellipse.get_point(self.angle_offset + (OS.get_ticks_msec() / 1000.0) * (TAU / orbital_period))
 	self.linear_velocity = vel.normalized() * p.length() * (TAU / orbital_period)
-
-func _process(_delta: float) -> void:
-	if Engine.editor_hint:
-		self.update()
 
 func _draw() -> void:
 	if not Engine.editor_hint or not self.editor_path_active:
@@ -74,6 +72,8 @@ func _update_ellipse() -> void:
 	
 	if self.static_target:
 		self.target = get_node_or_null(self.static_target)
+	
+	self.update()
 
 func _set_periapsis(value: float) -> void:
 	periapsis = value
