@@ -1,15 +1,36 @@
 tool
 extends "NaiveOrbiter.gd"
 
+const Progress := preload("Progress.gd")
+
+class InteractionTarget:
+	var target: Node2D
+	var start_ticks_msec: int
+	
+	func _init(target_: Node2D) -> void:
+		self.target = target_
+		self.start_ticks_msec = OS.get_ticks_msec()
+	
+	func ticks_msec() -> int:
+		return OS.get_ticks_msec() - self.start_ticks_msec
+	
+	func progress(total: float) -> float:
+		return self.ticks_msec() / (1000.0 * total)
+
 const OCCLUDER_POINTS: int = 10
 const GRAVITY_RADIUS_SCALE: float = 1.0 / 10.0
 # Without this the circle sprite is contained in the collision shape
 # instead of sitting right outside of it
 const INTERACTION_SPRITE_SCALE: float = 1.4
+const INTERACTION_RADIUS_GROW: float = 20.0
 
 export var texture: Texture setget _set_texture
 export var radius: float = 10.0 setget _set_radius
+export var interaction_time: float = 10.0
 
+var _interaction_target: InteractionTarget
+
+onready var _ui_progress: Progress = get_node(@"/root/Node2D/Ui").progress
 onready var _sprite: Sprite = $Sprite
 onready var _collision_shape: CollisionShape2D = $CollisionShape2D
 onready var _light_occluder: LightOccluder2D = $LightOccluder2D
@@ -20,6 +41,11 @@ onready var _interaction_sprite: Sprite = $Interaction/Sprite
 
 func _ready() -> void:
 	self._update_planet()
+
+func _process(_delta: float) -> void:
+	if self._interaction_target:
+		var progress := self._interaction_target.progress(self.interaction_time)
+		self._ui_progress.set_progress(progress)
 
 func calculate_gravity_strength_at(rad: float) -> float:
 	return self._gravity.gravity / pow(rad * self._gravity.gravity_distance_scale + 1, 2)
@@ -46,10 +72,11 @@ func _update_gravity_area() -> void:
 	self._gravity_collision_shape.shape = _new_shape(25.0 * self.radius)
 
 func _update_interaction_area() -> void:
-	var interaction_radius := 10.0 + self.radius
+	var interaction_radius := INTERACTION_RADIUS_GROW + self.radius
 	self._interaction_collision_shape.shape = _new_shape(interaction_radius)
 	var sprite_size := INTERACTION_SPRITE_SCALE * 2.0 * interaction_radius / self._interaction_sprite.texture.get_width() as float
 	self._interaction_sprite.scale = Vector2(sprite_size, sprite_size)
+	self._interaction_sprite.visible = false
 
 func _update_planet() -> void:
 	if not self._sprite:
@@ -76,3 +103,20 @@ func _set_texture(value: Texture) -> void:
 func _set_radius(value: float) -> void:
 	radius = value
 	self._update_planet()
+
+func _interaction_start(body: Node2D) -> void:
+	self._interaction_target = InteractionTarget.new(body)
+	self._interaction_sprite.visible = true
+
+func _interaction_end() -> void:
+	self._interaction_target = null
+	self._interaction_sprite.visible = false
+	self._ui_progress.hide()
+
+func _on_Interaction_body_entered(body: Node) -> void:
+	if body.is_in_group("player"):
+		self._interaction_start(body)
+
+func _on_Interaction_body_exited(body: Node) -> void:
+	if self._interaction_target and body == self._interaction_target.target:
+		self._interaction_end()
